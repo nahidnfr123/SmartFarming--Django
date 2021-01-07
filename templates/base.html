@@ -1,0 +1,355 @@
+{% load static %}
+{% static "assets/" as assetPath %}
+{% static "media/" as imagepath %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>AgroTechBD</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static "media/img/core-img/favicon.ico" %}">
+
+    <link href="//fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Poppins&family=Quicksand&display=swap"
+          rel="stylesheet" differ>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+
+    <!-- Core Stylesheet -->
+    {% comment %}<link rel="stylesheet" href="{% static "assets/style.css" %}">{% endcomment %}
+
+    <link rel="stylesheet" href="{{ assetPath }}style.css">
+    <link rel="stylesheet" href="{{ assetPath }}custom.css">
+
+    {% block Links %}{% endblock %}
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="spinner"></div>
+</div>
+
+<!-- Top Header Area -->
+<div class="TopBar">
+    <div class="Contact">
+        <span> Email: agrotechbd@gmail.com | Contact: +880134567801 </span>
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="TopBar_ProfileDiv">
+            <div class="ProfileIconBox" onclick="ProfileMenuToggle()" id="Profile" style="position: relative;">
+                <img data-src="{{ user.profile.image.url }}" alt="">
+                <span>{{ user.first_name }} {{ user.last_name }}</span>
+                <div class="MsgCount MsgCountfront text-info bg-white"
+                     style="position: absolute;top: 0;right: -6px;padding: 0 2px;border-radius: 40px; line-height: 16px;box-shadow: 0 1px 6px rgba(0,10,20,.8)">
+
+                </div>
+            </div>
+            <div id="Profile_Options">
+                <span class="Arrow"><i class="fas fa-sort-up"></i></span>
+                <ul>
+                    <li><a href="{% url 'user-profile' %}"> <i class="fas fa-user"></i> View Profile </a></li>
+                    <li><a href=""> <i class="fas fa-comment-alt"></i> Message
+                        <div class="MsgCount"></div>
+                    </a>
+                    </li>
+                    <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <div class="Log_Option">
+            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus" aria-hidden="true"></i> Register</a>
+        </div>
+    {% endif %}
+</div>
+
+
+<header class="Top_Header" id="Header">
+    <div class="LogoDiv">
+        <a href="{% url 'home' %}" title="Home Page">
+            <h3 style="line-height: 60px;"><span style="color: #26e08f;">Agro</span><span style="color:dodgerblue;">TechBD</span>
+            </h3>
+            <!-- <img data-src="" alt="AgroTechBD"> -->
+        </a>
+    </div>
+
+    <div class="NavMenu_Container">
+        <nav id="NavMenu" class="NavMenu">
+            {% with url_name=request.resolver_match.url_name %}
+                <ul class="Nav_Ul">
+                    <li><a href="{% url 'home' %}" class="{% if url_name == 'home' %}Active {% endif %}"> <i
+                            class="fas fa-home"></i> Home </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="" class=""> Products </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="" class=""> Farming Practice </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="" class=""> News </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="{% url 'weather-update' %}"
+                           class="{% if url_name == 'weather-update' %}Active {% endif %}"> Weather </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="{% url 'contact' %}" class="{% if url_name == 'contact' %}Active {% endif %}">
+                        Contact </a></li>
+                    <span class="V-Bar"> | </span>
+                    <li><a href="{% url 'about' %}" class="{% if url_name == 'about' %}Active {% endif %}"> About </a>
+                    </li>
+                </ul>
+            {% endwith %}
+        </nav>
+        <span class="navTrigger">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->
+
+
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% block BodyContent %}{% endblock %}
+
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <!-- Main Footer Area -->
+    <div class="main-footer bg-img bg-overlay section-padding-80-0"
+         style="background-image: url({{ imagepath }}img/bg-img/3.jpg);">
+        <div class="container">
+            <div class="row">
+
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-widget mb-80">
+                        <a href="#" class="foo-logo d-block mb-30"><img data-src="{{ imagepath }}img/core-img/logo2.png"
+                                                                        alt=""></a>
+                        <p>Lorem ipsum dolor sit amet, consecte stare adipiscing elit. In act honcus risus atiner
+                            Pellentesque risus.</p>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-pin" aria-hidden="true"></i><span>120 Raymond Rd, New York</span></p>
+                            <p><i class="fa fa-envelope" aria-hidden="true"></i><span>info.deercreative@gmail.com</span>
+                            </p>
+                            <p><i class="fa fa-phone" aria-hidden="true"></i><span>+84 223 9000</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-widget mb-80">
+                        <h5 class="widget-title">QUICK LINK</h5>
+                        <!-- Footer Widget Nav -->
+                        <nav class="footer-widget-nav">
+                            <ul>
+                                <li><a href="#">Purchase</a></li>
+                                <li><a href="#">Policities</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Return</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Payments</a></li>
+                                <li><a href="#">Partners</a></li>
+                                <li><a href="#">Guide</a></li>
+                                <li><a href="#">Standard</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Brands</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-widget mb-80">
+                        <h5 class="widget-title">RECENT NEWS</h5>
+
+                        <!-- Single Recent News Start -->
+                        <div class="single-recent-blog d-flex align-items-center">
+                            <div class="post-thumbnail">
+                                <img data-src="{{ imagepath }}img/bg-img/4.jpg" alt="">
+                            </div>
+                            <div class="post-content">
+                                <a href="#" class="post-title">WA’s largest farming business on the market</a>
+                                <div class="post-date">18 Aug 2018</div>
+                            </div>
+                        </div>
+
+                        <!-- Single Recent News Start -->
+                        <div class="single-recent-blog d-flex align-items-center">
+                            <div class="post-thumbnail">
+                                <img data-src="{{ imagepath }}img/bg-img/5.jpg" alt="">
+                            </div>
+                            <div class="post-content">
+                                <a href="#" class="post-title">Beef retail prices hit a record</a>
+                                <div class="post-date">18 Aug 2018</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget Area -->
+                <!-- <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="footer-widget mb-80">
+                    <h5 class="widget-title">STAY CONNECTED</h5>
+                    <div class="footer-social-info">
+                      <a href="#">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <span>Facebook</span>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        <span>Twitter</span>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-pinterest" aria-hidden="true"></i>
+                        <span>Pinterest</span>
+                      </a>
+                    </div>
+                  </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Copywrite Area  -->
+    <div class="copywrite-area">
+        <div class="container">
+            <div class="copywrite-text">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i> by <a
+                                    href="//colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-nav">
+                            <nav>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Produce</a></li>
+                                    <li><a href="#">Practice</a></li>
+                                    <li><a href="#">Products</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area End ##### -->
+
+
+<!-- Compiled and minified JavaScript -->
+{% comment %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/scrollup/2.4.1/jquery.scrollUp.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.1/jarallax.min.js"></script>
+    {% endcomment %}
+
+
+<!-- ##### All Javascript Files ##### -->
+<!-- jquery 3.5.1  -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper js -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"
+        defer></script>
+
+<!-- Bootstrap js -->
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"
+        defer></script>
+
+<!-- Owl Carousel js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
+<!-- Classynav -->
+<script src="{{ assetPath }}js/classynav.js" defer></script>
+<!-- Wow js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
+<!-- Sticky js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js" defer></script>
+<!-- Magnific Popup js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" defer></script>
+<!-- Scrollup js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/scrollup/2.4.1/jquery.scrollUp.min.js" defer></script>
+<!-- Jarallax js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.1/jarallax.min.js" defer></script>
+<!-- Jarallax Video js -->
+<script src="{{ assetPath }}js/jarallax-video.min.js" defer></script>
+<!-- Active js -->
+<script src="{{ assetPath }}js/active.js" defer></script>
+
+
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+        function LoadWebContent() {
+            var MainJS = document.createElement("script");
+            MainJS.src = "{{ assetPath }}js/custom.js";
+            document.body.appendChild(MainJS);
+        }
+
+
+        // Load all im ages after page load ....
+        function loadImages() {
+            $(window).scroll(function () {
+                $.each($('img'), function () {
+                    if ($(this).attr('data-src') && $(this).offset().top < ($(window).scrollTop() + $(window).height() + 100)) {
+                        var source = $(this).data('src');
+                        $(this).attr('src', source);
+                        $(this).removeAttr('data-src');
+                    }
+                })
+            })
+        }
+
+        LoadWebContent();
+        //loadImages();
+    });
+
+    // Check if user have internet connection ...
+    /*function myFunction() {
+        var x = "Is the browser online? " + navigator.onLine;
+        document.getElementById("demo").innerHTML = x;
+      }*/
+</script>
+
+<!-- Page level scrypt -->
+{% block Script %}{% endblock %}
+</body>
+</html>

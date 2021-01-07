@@ -1,0 +1,687 @@
+
+/* - 05.0 Top Bar */
+.TopBar {
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+    line-height: 38px;
+    /*if set to 40 problem in navigation bar*/
+    background-color: #dee;
+}
+
+.TopBar .Contact {
+    font-size: 14px;
+    float: left;
+    color: #666;
+}
+
+.TopBar .Contact span {
+    margin: 0 2px;
+}
+
+.TopBar .Log_Option {
+    float: right;
+}
+
+.TopBar .Log_Option a {
+    background-color: dodgerblue;
+    padding: 6px 10px 6px 0;
+    margin: 0 5px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    transition: 400ms;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.TopBar .Log_Option a:hover {
+    background-color: #1975C5;
+    box-shadow: 0 0 6px rgba(20, 20, 20, .6);
+}
+
+.TopBar .Log_Option a i.fas {
+    height: 31px;
+    width: 31px;
+    text-align: left;
+    border-radius: 20px;
+    padding: 6px;
+    border: 2px solid white;
+    transition: 400ms;
+    font-size: 14px;
+}
+
+.TopBar .Log_Option a:hover i.fas {
+    width: 40px;
+    color: dodgerblue;
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid dodgerblue;
+    box-shadow: 0 0 2px rgba(20, 20, 20, 1);
+}
+
+
+
+/*profile icon in top bar ...*/
+.TopBar_ProfileDiv {
+    float: right;
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+
+    position: relative;
+}
+
+.ProfileIconBox {
+    height: 36px;
+    width: auto;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 0 10px 0 0;
+    background-color: white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+    display: flex;
+    color: dodgerblue;
+    transition: all 400ms;
+}
+
+.ProfileIconBox:hover {
+    background-color: dodgerblue;
+    color: white;
+}
+
+#Profile.clicked {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.ProfileIconBox img {
+    height: 32px;
+    width: 32px;
+    margin: 2px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+
+    border: 2px solid dodgerblue;
+
+    transition: all 400ms;
+}
+
+.ProfileIconBox > span {
+    display: block;
+    padding-left: 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+
+.TopBar_ProfileDiv #Profile_Options {
+    display: none;
+    width: 140px;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    z-index: 9999;
+    background-color: dodgerblue;
+    padding: 10px 0;
+    box-shadow: -2px 2px 6px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+.TopBar_ProfileDiv #Profile_Options.show {
+    display: block;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul {
+    list-style: none;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul li {
+    line-height: 30px;
+    position: relative;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul li a .Notification {
+    height: 20px;
+    width: auto;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 6px;
+    background-color: white;
+    color: coral;
+    font-size: 12px;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 10px;
+    padding: 0 2px;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 0 10px;
+    font-weight: 600;
+    transition: all 400ms;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul li a i {
+    margin-right: 6px;
+}
+
+.TopBar_ProfileDiv #Profile_Options ul li a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, .8);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.Arrow .fa-sort-up {
+    position: absolute;
+    top: -7px;
+    right: calc(50% - 10px);
+    color: dodgerblue;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width:600px) {
+    .TopBar {
+        height: 80px;
+    }
+
+    .TopBar .Contact {
+        float: none;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    .TopBar .Log_Option {
+        float: none;
+        text-align: center;
+    }
+
+    .TopBar_ProfileDiv {
+        width: 180px;
+        float: none;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .TopBar .Contact {
+        float: none;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .TopBar .Contact > span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: 20s marquee linear infinite;
+    }
+
+    @keyframes marquee {
+        from {
+            left: 100%;
+        }
+
+        to {
+            left: -100%;
+        }
+    }
+}
+
+
+
+
+
+
+/* - 06.0 Navigation Bar */
+/* Header (Navigation bar)*/
+.Top_Header {
+    width: 100%;
+    height: 60px;
+    padding: 0 10px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+    background-color: white;
+
+
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    -ms-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+    transform-origin: top center;
+
+}
+
+.Top_Header .LogoDiv {
+    float: left;
+    height: 60px;
+    width: auto;
+}
+
+.Top_Header > .LogoDiv > a > img {
+    height: 56px;
+    padding: 6px;
+    transition: 400ms;
+    margin: 2px auto;
+}
+
+.Top_Header > .LogoDiv > a > img:hover {
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.Top_Header .NavMenu_Container {
+    width: auto;
+    float: right;
+}
+
+.Top_Header .NavMenu {
+    height: 60px;
+    line-height: 60px;
+}
+
+.Top_Header .NavMenu .Nav_Ul {
+    height: 60px;
+    display: flex;
+    list-style: none;
+}
+
+.Top_Header .NavMenu .Nav_Ul li {
+    display: inline-block;
+}
+
+.Top_Header .NavMenu .Nav_Ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 0 14px;
+    font-size: 12.4px;
+    font-weight: 600;
+    color: #888;
+    position: relative;
+
+    -webkit-transition: all 200ms ease;
+    transition: all 200ms ease;
+    transform-origin: center center;
+}
+
+.Top_Header .NavMenu > .Nav_Ul > li > a > i {
+    margin-right: 2px;
+}
+
+
+.Top_Header .NavMenu .Nav_Ul:hover li a {
+    opacity: .6;
+}
+
+.Top_Header .NavMenu .Nav_Ul li a:hover {
+    color: #fc6060;
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.Top_Header .NavMenu_Container .NavMenu .Nav_Ul li a.Active {
+    font-size: 14px;
+    color: dodgerblue;
+    transform: scale(1.2);
+}
+
+.V-Bar {
+    color: #ddd;
+}
+
+
+
+/*Sticky Navigation bar*/
+#Header.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
+    background-color: rgba(20, 20, 20, .8);
+    height: 60px;
+    line-height: 60px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+}
+
+/*Add padding to main body when sticky navigation bar is active...*/
+#Header.sticky ~ #MainContent {
+    padding-top: 60px!important;
+}
+
+
+/* Navigation trigger menu icon */
+.navTrigger {
+    display: none;
+}
+
+
+@media screen and (max-width:920px) {
+    .navTrigger {
+        display: block;
+    }
+
+    .V-Bar {
+        display: none;
+    }
+
+    .Top_Header .NavMenu {
+        width: 0;
+        height: auto;
+        overflow: hidden;
+        position: absolute;
+        top: 60px;
+        right: -220px;
+        z-index: 999;
+        transition: all 400ms;
+    }
+
+    .Top_Header .NavMenu.show_list {
+        width: 200px;
+        overflow: hidden;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        z-index: 999;
+        box-shadow: -2px 2px 6px rgba(0, 0, 0, .2);
+    }
+
+    .Top_Header .NavMenu_Container .NavMenu .Nav_Ul {
+        display: block;
+        height: calc(100vh);
+        background-color: #fff;
+        box-shadow: -2px 2px 6px rgba(0, 0, 0, .2);
+        line-height: 40px;
+    }
+
+    /* when navigation is sticky*/
+    #Header.sticky .NavMenu_Container .NavMenu .Nav_Ul {
+        background-color: rgba(255, 255, 255, .9);
+        overflow-y: scroll;
+        padding-bottom: 40px;
+    }
+
+    .Top_Header .NavMenu .Nav_Ul li {
+        width: 100%;
+        height: 40px;
+    }
+
+    .Top_Header .NavMenu .Nav_Ul li a {
+        display: block;
+        color: #666;
+        line-height: 40px;
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .Top_Header .NavMenu .Nav_Ul:hover li a {
+        opacity: 1;
+    }
+}
+
+
+/* Animation for navigation menu icon*/
+.navTrigger {
+    cursor: pointer;
+    width: 46px;
+    height: 44px;
+    position: relative;
+    float: right;
+    margin: 8px;
+    border-radius: 10px;
+    padding: 6px;
+    /*box-shadow: inset 0 0 6px dodgerblue, 0 0 6px dodgerblue;*/
+    border: 2px solid dodgerblue;
+    transition: all 400ms;
+    transform: scale(.8);
+
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
+
+.navTrigger.light_up {
+    border: 2px solid dodgerblue;
+    box-shadow: inset 0 0 6px dodgerblue, 0 0 6px dodgerblue;
+}
+
+.navTrigger:hover {
+    border: 2px solid dodgerblue;
+}
+
+.navTrigger > i {
+    background-color: dodgerblue;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin: 4px 0 0 0;
+}
+
+.navTrigger.light_up > i {
+    background-color: dodgerblue;
+}
+
+.navTrigger > i:nth-child(1) {
+    -webkit-animation: outT 0.8s backwards;
+    animation: outT 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger > i:nth-child(2) {
+    margin: 5px 0;
+    -webkit-animation: outM 0.8s backwards;
+    animation: outM 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger > i:nth-child(3) {
+    -webkit-animation: outBtm 0.8s backwards;
+    animation: outBtm 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger.active > i:nth-child(1) {
+    -webkit-animation: inT 0.8s forwards;
+    animation: inT 0.8s forwards;
+}
+
+.navTrigger.active > i:nth-child(2) {
+    -webkit-animation: inM 0.8s forwards;
+    animation: inM 0.8s forwards;
+}
+
+.navTrigger.active > i:nth-child(3) {
+    -webkit-animation: inBtm 0.8s forwards;
+    animation: inBtm 0.8s forwards;
+}
+
+@-webkit-keyframes inM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes inM {
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes outM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes outM {
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes inT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes inT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes outT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes inBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes inBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes outBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+.affix {
+    padding: 0;
+    background-color: #111;
+}
+
+/*end of navigation bars..*/
+
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}

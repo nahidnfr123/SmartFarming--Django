@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block BodyContent %}
+    {% load static %}
+    {% static "media/" as imagepath %}
+
+
+    <!-- ##### Famie Benefits Area Start ##### -->
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h3>Profile</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                    <img src="{{ user.profile.image.url }}" alt="" class="img-rounded img-responsive"  style="border-radius:50%;height:80px;width:80px;object-fit:cover;object-position:center;" />
+                                </div>
+                                <div class="col-sm-6 col-md-8">
+                                    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                                    <small>
+                                        <cite title="San Francisco, USA">San Francisco, USA 
+                                            <i class="glyphicon glyphicon-map-marker"></i>
+                                        </cite>
+                                    </small>
+                                    <p>
+                                        <i class="fa fa-envelope mr-2"></i>Email: {{ user.email }}
+                                        <br />
+                                        {% if user.profile.gender == 'male' %}
+                                            <i class="fa fa-male mr-2"></i>Gender: {{ user.profile.gender }}
+                                        {% elif user.profile.gender == 'female' %}
+                                            <i class="fa fa-female mr-2"></i>Gender: {{ user.profile.gender }}
+                                        {% else %}
+                                            <i class="fa fa-transgender-alt mr-2"></i>Gender: {{ user.profile.gender }}
+                                        {% endif %}
+                                        <br />
+                                        <i class="fa fa-calendar-alt mr-2"></i>DOB: {{ user.profile.date_of_birth }}
+                                    </p>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-primary">Edit Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    <!-- ##### Famie Benefits Area End ##### -->
+
+
+{% endblock %}
+
+
+<!-- Page level scrypt -->
+{% block Script %}
+
+{% endblock %}

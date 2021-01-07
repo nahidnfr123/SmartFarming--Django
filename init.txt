@@ -1,0 +1,26 @@
+python -m venv @Env_py
+@Env_py\Scripts\activate
+
+pip install django
+pip install mysqlclient
+pip install pillow
+pip install django-crispy-forms
+pip install geoip2
+
+
+Download Twisted form here: # https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+Install Twisted: pip install Twisted-20.3.0-cp39-cp39-win_amd64.whl
+cd @Core
+pip install Twisted-20.3.0-cp39-cp39-win_amd64.whl
+----  OR ----
+pip install twisted
+# Update vscode build tool ....
+
+
+python -m pip install -U channels
+
+# install visual c++ else get error ... from build tool ...
+python -m pip install channels_redis
+
+---------------------------------------------
+pip freeze > requirements.txt

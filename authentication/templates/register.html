@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+<!-- {% load crispy_forms_tags %} -->
+
+
+{% block BodyContent %}
+    {% load static %}
+    {% static "media/" as imagepath %}
+
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4 text-center">Register</legend>
+                                <!-- {{ form|crispy }} -->
+                                {{ form.username.label }}
+                                {{ form.username }}
+
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        {{ form.first_name.label }}
+                                        {{ form.first_name }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form.last_name.label }}
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+
+                                {{ form.email.label }}
+                                {{ form.email }}
+
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        {{ form.password1.label }}
+                                        {{ form.password1 }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form.password2.label }}
+                                        {{ form.password2 }}
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.errors }}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-group">    
+                                <input class="btn btn-info btn-sm" type="submit" value="Submit" name="submit">
+                            </div>
+                        </form>
+                        <div class="border-top pt-3">
+                            <small class="text-muted">
+                                Already have an account? <a href="{% url 'login' %}" class="text-info ml-2">Login</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+<!-- Page level scrypt -->
+{% block Script %}
+
+{% endblock %}
