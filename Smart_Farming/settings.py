@@ -98,12 +98,19 @@ WSGI_APPLICATION = 'Smart_Farming.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql', # Date Time (Time zone problem)...
+        # 'NAME': 'smart_farming_app',
+        # 'USER': 'root',
+        # 'PASSWORD': '@nfrootcode',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306'
+
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'smart_farming_app',
-        'USER': 'root',
+        'USER': 'postgres',
         'PASSWORD': '@nfrootcode',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '5432'
     }
 }
 

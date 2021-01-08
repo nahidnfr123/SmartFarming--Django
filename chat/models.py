@@ -1,18 +1,21 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+import datetime
+now = datetime.datetime.now()
 
 User = get_user_model()
 
 
-# Create your models here.
-
 class Message(models.Model):
-    author = models.ForeignKey(User, related_name='author_messages', on_delete=models.CASCADE)
-    content = models.TextField()
-    timestamp = models.DateField(auto_now_add=True)
+    author = models.ForeignKey(User, related_name='author_messages', on_delete=models.CASCADE, editable=False)
+    content = models.TextField(max_length=255, blank=False, editable=True, )
+    timestamp = models.DateTimeField(auto_now_add=True, editable=False, )
+
+    class Meta:
+        ordering = ['-timestamp']
 
     def __str__(self):
         return self.author.username
 
-    def last_20_messages(self):
+    def last_10_messages():
         return Message.objects.order_by('-timestamp').all()[:20]
